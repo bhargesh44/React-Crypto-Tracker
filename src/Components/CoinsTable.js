@@ -64,6 +64,8 @@ const CoinsTable = () => {
         coin.symbol.toLowerCase().includes(search)
     );
   };
+
+  //   if (Math.random() > 0.5) return new Error("Test Error Boundary");
   return (
     <ThemeProvider theme={darkTheme}>
       <Container style={{ textAlign: "center" }}>

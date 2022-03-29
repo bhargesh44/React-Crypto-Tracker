@@ -1,10 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header";
-import CoinPage from "./Pages/CoinPage";
-import HomePage from "./Pages/HomePage";
 import { makeStyles } from "@material-ui/core";
 import Alert from "./Components/Alert";
+import { lazy, Suspense } from "react";
 
 const useStyles = makeStyles(() => ({
   App: {
@@ -14,6 +13,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const HomePage = lazy(() => import("./Pages/HomePage.js"));
+const CoinPage = lazy(() => import("./Pages/CoinPage.js"));
+
 function App() {
   const classes = useStyles();
 
@@ -21,10 +23,12 @@ function App() {
     <BrowserRouter>
       <div className={classes.App}>
         <Header />
-        <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/coins/:id" element={<CoinPage />} />
-        </Routes>
+        <Suspense fallback={<div>Loading....</div>}>
+          <Routes>
+            <Route exact path="/" element={<HomePage />} />
+            <Route exact path="/coins/:id" element={<CoinPage />} />
+          </Routes>
+        </Suspense>
       </div>
       <Alert />
     </BrowserRouter>
