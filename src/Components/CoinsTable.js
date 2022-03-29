@@ -14,7 +14,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 
